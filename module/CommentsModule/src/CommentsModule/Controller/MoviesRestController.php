@@ -28,13 +28,13 @@
 	    public function getList()
 	    {
 	    	$data = (array)$this->getRequest()->getQuery();	//return array
-	    	if(!array_key_exists('q', $data) && !array_key_exists('id', $data)){
-	    		$data = array("q" => "Star Trek", "limit" => "10");
+	    	if(!array_key_exists('t', $data) && !array_key_exists('i', $data)){
+	    		$data = array("t" => "Star Trek");
 	    	}
 	    	$data['type'] = "json";
 	    	
 	    	$temp = http_build_query($data);
-	    	$curl = curl_init('http://mymovieapi.com/?'.$temp);
+	    	$curl = curl_init('http://omdbapi.com/?'.$temp);
 	    	curl_setopt_array($curl, array(
 	    			CURLOPT_RETURNTRANSFER => 1
 	    	));
@@ -55,7 +55,7 @@
 	    {
 	    	$data['type'] = "json";
 	    	
-	    	$curl = curl_init('http://mymovieapi.com/?id='.$id);
+	    	$curl = curl_init('http://omdbapi.com/?i='.$id);
 	    	curl_setopt_array($curl, array(
 	    			CURLOPT_RETURNTRANSFER => 1
 	    	));
